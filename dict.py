@@ -53,7 +53,7 @@ while True: ## REPL - Read Execute Program Loop
         word = input("  Word: ")
         trans = input("  Translation: ")
         add_word(conn, word, trans)
-        print("  Added word {name}")
+        print(f"  Added word {word}")
     elif cmd == "delete":
         ID = input("  ID: ")
         delete_word(conn, ID)
