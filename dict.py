@@ -8,8 +8,8 @@ conn = psycopg2.connect(
 
 # read_dict: returns the list of all dictionary entries:
 #   argument: C - the database connection.
-def read_dict(C):
-    cur = C.cursor()
+def read_dict(conn):
+    cur = conn.cursor()
     cur.execute("SELECT id, word, translation FROM dictionary;")
     rows = cur.fetchall()
     cur.close()
@@ -19,23 +19,23 @@ def read_dict(C):
 #   arguments: C           - the database connection.
 #              word        - the dictionary word to be added
 #              translation - the translation of the word
-def add_word(C, word, translation):
-    cur = C.cursor()
+def add_word(conn, word, translation):
+    cur = conn.cursor()
     cur.execute(f"INSERT INTO dictionary (word, translation) VALUES ('{word}', '{translation}');")
     cur.close()
 
 # delete_word: deletes an entry identified by an ID
 #   arguments: C  - the database connection.
 #              ID - the identification of the entry
-def delete_word(C, ID):
-    cur = C.cursor()
+def delete_word(conn, ID):
+    cur = conn.cursor()
     cur.execute(f"DELETE FROM dictionary WHERE id = '{ID}';")
     cur.close()
 
 # save_dict: saves the database by committing the changes
 #   arguments: C  - the database connection.
-def save_dict(C):
-    cur = C.cursor()
+def save_dict(conn):
+    cur = conn.cursor()
     cur.execute("COMMIT;")
     cur.close()
 
