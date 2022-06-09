@@ -50,12 +50,15 @@ while True: ## REPL - Read Execute Program Loop
     if cmd == "list":
         print(read_dict(conn))
     elif cmd == "add":
-        name = input("  Word: ")
-        phone = input("  Translation: ")
-        add_word(conn, name, phone)
+        word = input("  Word: ")
+        trans = input("  Translation: ")
+        add_word(conn, word, trans)
+        print("  Added word {name}")
     elif cmd == "delete":
         ID = input("  ID: ")
         delete_word(conn, ID)
+        print("  Deleted word number {ID}")
     elif cmd == "quit":
         save_dict(conn)
+        print("  Database saved! Good bye!")
         exit()
