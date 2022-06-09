@@ -1,8 +1,8 @@
 import psycopg2
 conn = psycopg2.connect(
    host="localhost",
-   database="database",
-   user="user",
+   database="rursus",
+   user="rursus",
    password="abc123"
 )
 
@@ -25,6 +25,12 @@ def save_dict(C):
     cur.execute("COMMIT;")
     cur.close()
 
+print("""Hello and welcome to the dictionary! Available commands:
+  add    - add a word and a translation
+  delete - delete a word
+  list   - list the entire dictionary
+  quit   - save the dictionary and quit
+""")
 while True: ## REPL - Read Execute Program Loop
     cmd = input("Command: ")
     if cmd == "list":
