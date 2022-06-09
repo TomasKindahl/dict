@@ -39,26 +39,28 @@ def save_dict(conn):
     cur.execute("COMMIT;")
     cur.close()
 
-print("""Hello and welcome to the dictionary! Available commands:
+def main():
+    print("""Hello and welcome to the dictionary! Available commands:
   add    - add a word and a translation
   delete - delete a word
   list   - list the entire dictionary
-  quit   - save the dictionary and quit
-""")
-while True: ## REPL - Read Execute Program Loop
-    cmd = input("Command: ")
-    if cmd == "list":
-        print(read_dict(conn))
-    elif cmd == "add":
-        word = input("  Word: ")
-        trans = input("  Translation: ")
-        add_word(conn, word, trans)
-        print(f"  Added word {word}")
-    elif cmd == "delete":
-        ID = input("  ID: ")
-        delete_word(conn, ID)
-        print("  Deleted word number {ID}")
-    elif cmd == "quit":
-        save_dict(conn)
-        print("  Database saved! Good bye!")
-        exit()
+  quit   - save the dictionary and quit""")
+    while True: ## REPL - Read Execute Program Loop
+        cmd = input("Command: ")
+        if cmd == "list":
+            print(read_dict(conn))
+        elif cmd == "add":
+            word = input("  Word: ")
+            trans = input("  Translation: ")
+            add_word(conn, word, trans)
+            print(f"  Added word {word}")
+        elif cmd == "delete":
+            ID = input("  ID: ")
+            delete_word(conn, ID)
+            print("  Deleted word number {ID}")
+        elif cmd == "quit":
+            save_dict(conn)
+            print("  Database saved! Good bye!")
+            exit()
+
+main()
